@@ -108,6 +108,17 @@ set ( XLUA_CORE
     i64lib.c
     xlua.c
 )
+#begin lua-protobuf
+set(PBC_SRC ../../lua-protobuf/pb.c)
+set_property(
+    SOURCE ${PBC_SRC}
+    APPEND
+    PROPERTY COMPILE_DEFINITIONS
+    LUA_LIB
+)
+list(APPEND THIRDPART_INC  ../../lua-protobuf)
+set (THIRDPART_SRC ${THIRDPART_SRC} ${PBC_SRC})
+#end lua-protobuf
 
 if (NOT USING_LUAJIT)
     list (APPEND XLUA_CORE memory_leak_checker.c)
